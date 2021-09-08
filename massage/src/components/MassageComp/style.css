@@ -1,0 +1,46 @@
+.massage {
+   font-size: xx-large;
+   text-align: center;
+   padding: 20%;
+   font-weight: 500;
+
+   background-color: #e0a8a7;
+
+   color: #38363d;
+}
+.tracking-in-contract-bck-bottom {
+   -webkit-animation: tracking-in-contract-bck-bottom 3s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+   animation: tracking-in-contract-bck-bottom 3s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+@-webkit-keyframes tracking-in-contract-bck-bottom {
+   0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(400px) translateY(300px);
+      transform: translateZ(400px) translateY(300px);
+      opacity: 0;
+   }
+   40% {
+      opacity: 0.6;
+   }
+   100% {
+      -webkit-transform: translateZ(0) translateY(0);
+      transform: translateZ(0) translateY(0);
+      opacity: 1;
+   }
+}
+@keyframes tracking-in-contract-bck-bottom {
+   0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(400px) translateY(300px);
+      transform: translateZ(400px) translateY(300px);
+      opacity: 0;
+   }
+   40% {
+      opacity: 0.6;
+   }
+   100% {
+      -webkit-transform: translateZ(0) translateY(0);
+      transform: translateZ(0) translateY(0);
+      opacity: 1;
+   }
+}
