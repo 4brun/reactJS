@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import MassageList from "./components/MassageList/MassageList";
 import './App.css'
-// import UserMassage from "./components/UserMassage/UserMassage";
 
 function App() {
   const [massageList, setMassageList] = useState([])
@@ -59,7 +58,6 @@ function App() {
         <input placeholder="author" value={userAuthor} onChange={event => setUserAuthor(event.target.value)} />
         <button className="btn" onClick={addMassage}>Добавить</button>
       </div>
-      {/* <UserMassage text={userText} author={userAuthor} /> */}
       {showMsg ? <p className="autoMsg">{autoMassage} </p> : null}
       <MassageList massageList={massageList} />
 
