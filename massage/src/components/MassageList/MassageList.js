@@ -1,14 +1,20 @@
+import { Grid, Card, CardContent, Typography } from '@material-ui/core'
+
 const MassageList = ({ massageList }) => {
    return (
-      <div>
-         {massageList.map((item) => (
 
-            <div key={item.id}>
-               <h3>{item.author}</h3>
-               <p>{item.text}</p>
-            </div>
+      <Grid direction="column" container spacing={4} >
+         {massageList.map((item) => (
+            <Grid item key={item.id}>
+               <Card>
+                  <CardContent>
+                     <Typography variant="h5" pd={4}>{item.author}</Typography>
+                     <Typography>{item.text}</Typography>
+                  </CardContent>
+               </Card>
+            </Grid>
          ))}
-      </div>
+      </Grid>
    )
 }
 export default MassageList

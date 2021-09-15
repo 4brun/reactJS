@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import MassageList from "./components/MassageList/MassageList";
-import './App.css'
+// import './App.css'
+import { TextField, Button, Grid, Container, Snackbar, Typography } from "@material-ui/core";
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import ChatList from "./components/ChatList/ChatList";
 
 function App() {
   const [massageList, setMassageList] = useState([])
@@ -34,6 +38,14 @@ function App() {
     author: 'Джоан Роулинг'
   }
   ])
+  const style = {
+    background: 'rgba(0, 0, 0, 0.87)',
+    borderRadius: 3,
+    color: 'white',
+    padding: '10px',
+    boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.87)',
+  };
+
   const addMassage = () => {
     const userMassage = {
       id: (massageList.length + 1),
@@ -43,6 +55,13 @@ function App() {
     setMassageList(prev => [...prev, userMassage])
     setShowMsg(true) // показываем сообщение
   }
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setShowMsg(false)
+  }
+
   useEffect(() => {
     setAutoMassage(`Вы добавили в список текст: ${userText} и Автора: ${userAuthor}`)
     setUserText('') // чистим поля input
@@ -52,15 +71,71 @@ function App() {
 
   return (
     <div className="App">
-      <button className="btn" onClick={craeteMassageList}>Создать список</button>
-      <div className="userMassage">
-        <input placeholder="text" value={userText} onChange={event => setUserText(event.target.value)} />
-        <input placeholder="author" value={userAuthor} onChange={event => setUserAuthor(event.target.value)} />
-        <button className="btn" onClick={addMassage}>Добавить</button>
-      </div>
-      {showMsg ? <p className="autoMsg">{autoMassage} </p> : null}
-      <MassageList massageList={massageList} />
+      <Container maxWidth="md">
+        <Grid container>
+          <Grid item md={6} sm={6}>
+            <ChatList />
+          </Grid>
 
+          <Grid
+            container
+            direction="column"
+            alignItems="flex-end"
+            spacing={6}
+            md={6}>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={craeteMassageList}
+                startIcon={<PlaylistAddCheckIcon />}>
+                Создать список</Button>
+            </Grid>
+            <Grid item>
+              <TextField
+                id="outlined-basic"
+                label="text"
+                variant="outlined"
+                size="small"
+                inputRef={input => input && input.focus()}
+                value={userText}
+                onChange={event => setUserText(event.target.value)} />
+            </Grid>
+            <Grid item>
+              <TextField
+                id="outlined-basic"
+                label="author"
+                variant="outlined"
+                size="small"
+                value={userAuthor}
+                onChange={event => setUserAuthor(event.target.value)} />
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={addMassage}
+                startIcon={<AddBoxIcon />}>
+                Добавить</Button>
+            </Grid>
+
+            {/* <button className="btn" >Добавить</button> */}
+            <Snackbar
+              open={showMsg}
+              autoHideDuration={3000}
+              onClose={handleClose}
+            >
+              <Typography style={style}>
+                {autoMassage}
+              </Typography>
+
+            </Snackbar>
+            {/* {showMsg ? <p className="autoMsg">{autoMassage} </p> : null} */}
+            <MassageList massageList={massageList} />
+          </Grid>
+        </Grid>
+
+      </Container>
     </div>
   );
 }
