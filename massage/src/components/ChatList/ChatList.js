@@ -1,5 +1,6 @@
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core"
+import { Grid, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core"
 import MailIcon from '@material-ui/icons/Mail';
+import MassageList from '../MassageList/MassageList'
 
 const chats = [{
    id: 1,
@@ -25,19 +26,26 @@ const chats = [{
 const ChatList = () => {
    return (
       <>
-         <List>
-            {chats.map((chat) => (
-               <ListItem
-                  button
-                  key={chat.id}>
-                  <ListItemIcon>
-                     <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText >
-                     {chat.name}
-                  </ListItemText>
-               </ListItem>))}
-         </List>
+         <Grid container>
+            <Grid item md={6} sm={6}>
+               <List>
+                  {chats.map((chat) => (
+                     <ListItem
+                        button
+                        key={chat.id}>
+                        <ListItemIcon>
+                           <MailIcon />
+                        </ListItemIcon>
+                        <ListItemText >
+                           {chat.name}
+                        </ListItemText>
+                     </ListItem>))}
+               </List>
+            </Grid>
+
+            <MassageList />
+         </Grid>
+
       </>
    )
 }
