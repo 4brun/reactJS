@@ -1,0 +1,3 @@
+const HIDE_AUTO_MSG = "HIDE_AUTO_MSG"
+
+export { HIDE_AUTO_MSG }
