@@ -1,7 +1,8 @@
-import { Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography } from "@material-ui/core"
+import { Button, Card, CardContent, CardHeader, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, IconButton } from "@material-ui/core"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addProfile, deleteProfile } from "../../actions/profileActions"
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const Profile = () => {
@@ -23,7 +24,7 @@ const Profile = () => {
       setName('')
       setAge('')
    }
-   const clearProfile = () => { dispatch(deleteProfile()) }
+   const clearProfile = () => dispatch(deleteProfile())
 
    return (
       <>
@@ -58,18 +59,22 @@ const Profile = () => {
                </Grid>
             </Grid>
          </form>
-         <>
-            <Typography variant="h5">
-               Name: {profile.name}
-            </Typography>
-            <Typography>
-               Age: {profile.age}
-            </Typography>
-            <Typography >
-               Gender: {profile.gender}
-            </Typography>
-            <Button variant="contained" onClick={clearProfile}>Delete profile</Button>
-         </>
+         <Card>
+            <CardContent>
+               <CardHeader action={<IconButton onClick={clearProfile} >
+                  <CloseIcon />
+               </IconButton>} />
+               <Typography variant="h5">
+                  Name: {profile.name}
+               </Typography>
+               <Typography>
+                  Age: {profile.age}
+               </Typography>
+               <Typography >
+                  Gender: {profile.gender}
+               </Typography>
+            </CardContent>
+         </Card>
       </>
    )
 }
