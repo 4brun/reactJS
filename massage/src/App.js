@@ -20,7 +20,7 @@ function App() {
             <Button startIcon={<PermIdentityIcon />} href="/profile">Profile</Button>
           </Box>
 
-          <Route path="/" component={Main} />
+          <Route exact path="/" component={Main} />
           <Route path="/chats" component={ChatList} />
           <Route path="/profile" component={Profile} />
         </Container >

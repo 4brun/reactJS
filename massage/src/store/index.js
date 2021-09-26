@@ -1,6 +1,19 @@
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import profileReducer from './profileReducer'
+import autoMassage from './autoMsgReducer'
+import chats from './chatsReducer'
+import massages from './massagesReducer'
+import profile from './profileReducer'
 
+const reducers = combineReducers({
+   profile,
+   massages,
+   autoMassage,
+   chats
+})
 
-export const store = createStore(profileReducer, composeWithDevTools())
+export const store = createStore(reducers, composeWithDevTools())
+
+// profile: profileReducer,
+// massages: massagesReducer,
+// autoMassage: autoMsgReducer

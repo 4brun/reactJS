@@ -1,0 +1,4 @@
+const OPEN_CHAT = "OPEN_CHAT"
+const DELETE_CHAT = "DELETE_CHAT"
+
+export { OPEN_CHAT, DELETE_CHAT }

@@ -1,8 +1,10 @@
-import { Button, Card, CardContent, CardHeader, FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, IconButton } from "@material-ui/core"
+import { Button, FormControlLabel, Grid, Radio, RadioGroup, TextField, } from "@material-ui/core"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addProfile, deleteProfile } from "../../actions/profileActions"
-import CloseIcon from '@material-ui/icons/Close';
+import { addProfile } from "../../actions/profileActions"
+import { showAutoMSG } from "../../actions/autoMsgActions";
+import AutoMSG from "../AutoMSG/AutoMSG";
+import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
 
 const Profile = () => {
@@ -21,10 +23,10 @@ const Profile = () => {
          gender: gender
       }
       dispatch(addProfile(userProfile))
+      dispatch(showAutoMSG(`Вы добавили профиль. Имя - ${name}, Возраст - ${age}`)) // отобразится сообщение о добавлении
       setName('')
       setAge('')
    }
-   const clearProfile = () => dispatch(deleteProfile())
 
    return (
       <>
@@ -59,22 +61,10 @@ const Profile = () => {
                </Grid>
             </Grid>
          </form>
-         <Card>
-            <CardContent>
-               <CardHeader action={<IconButton onClick={clearProfile} >
-                  <CloseIcon />
-               </IconButton>} />
-               <Typography variant="h5">
-                  Name: {profile.name}
-               </Typography>
-               <Typography>
-                  Age: {profile.age}
-               </Typography>
-               <Typography >
-                  Gender: {profile.gender}
-               </Typography>
-            </CardContent>
-         </Card>
+         {/* тут добавил проверку, когда есть данные в профиле - он отображается, если нет - то не отображается */}
+         {profile.name ? <ProfileInfo /> : null}
+
+         <AutoMSG />
       </>
    )
 }

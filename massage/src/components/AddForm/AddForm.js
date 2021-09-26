@@ -1,64 +1,43 @@
-import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+// import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { TextField, Button, Grid } from "@material-ui/core";
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addMassage, craeteMassageList } from '../../actions/massageActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMassage } from '../../actions/massageActions';
+import { showAutoMSG } from '../../actions/autoMsgActions';
 
 const AddForm = () => {
    const [userText, setUserText] = useState('')
    const [userAuthor, setUserAuthor] = useState('')
+   const chatId = useSelector((state) => state.chats.activeId)
 
    const dispatch = useDispatch()
 
-   const craeteList = () => {
-      const list = [{
-         id: 1,
-         text: 'Властелин колец',
-         author: 'Джон Р. Р. Толкин'
-      },
-      {
-         id: 2,
-         text: 'Гордость и предубеждение',
-         author: 'Джон Р. Р. Толкин'
-      },
-      {
-         id: 3,
-         text: 'Тёмные начала',
-         author: 'Филип Пулман'
-      },
-      {
-         id: 4,
-         text: 'Автостопом по галактике',
-         author: 'Дуглас Адамс'
-      },
-      {
-         id: 5,
-         text: 'Гарри Поттер и Кубок огня',
-         author: 'Джоан Роулинг'
-      }]
-      dispatch(craeteMassageList(list))
-   }
+   // const craeteList = () => {
+   //    const list =
+   //       dispatch(craeteMassageList(list))
+   // }
 
    const addMsg = () => {
       const userMassage = {
          text: userText || 'Текст',
          author: userAuthor || 'Автор'
       }
-      dispatch(addMassage(userMassage))
+      dispatch(addMassage(chatId, userMassage))
+      dispatch(showAutoMSG(`Вы добавили сообщение ${userText} от автора ${userAuthor}`))
       setUserText('')
       setUserAuthor('')
    }
    return (
       <>
-         <Grid item>
+         {/* <Grid item>
             <Button
                variant="contained"
                color="primary"
                onClick={craeteList}
                startIcon={<PlaylistAddCheckIcon />}>
                Создать список</Button>
-         </Grid>
+         </Grid> */}
          <Grid item>
             <TextField
                id="outlined-basic"
@@ -84,7 +63,7 @@ const AddForm = () => {
                color="primary"
                onClick={addMsg}
                startIcon={<AddBoxIcon />}>
-               Добавить</Button>
+               Добавить сообщение</Button>
          </Grid>
       </>
    )
