@@ -1,4 +1,4 @@
-import { OPEN_CHAT, DELETE_CHAT } from "./types/chatsTypes"
+import { OPEN_CHAT, DELETE_CHAT, ADD_CHAT } from "./types/chatsTypes"
 
 const initialState = {
    activeId: 0,
@@ -6,7 +6,7 @@ const initialState = {
    { id: 1, name: "Зомби" },
    { id: 2, name: "Рыцари всякие" },
    { id: 3, name: "Инопланетяне и всё такое" },
-   { id: 4, name: "Волшебыне палочки" },]
+   { id: 4, name: "Волшебыне палочки" }]
 }
 
 const chats = (state = initialState, { type, payload }) => {
@@ -21,6 +21,15 @@ const chats = (state = initialState, { type, payload }) => {
          return {
             ...state,
             chats: state.chats.filter((el) => el.id !== payload)
+         }
+      case ADD_CHAT:
+         const newChat = {
+            id: state.chats.length,
+            name: payload
+         }
+         return {
+            ...state,
+            chats: [...state.chats, newChat]
          }
       default:
          return state

@@ -1,4 +1,3 @@
-// import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { TextField, Button, Grid } from "@material-ui/core";
 import { useState } from 'react';
@@ -6,17 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMassage } from '../../actions/massageActions';
 import { showAutoMSG } from '../../actions/autoMsgActions';
 
-const AddForm = () => {
+const AddMasssageForm = () => {
    const [userText, setUserText] = useState('')
    const [userAuthor, setUserAuthor] = useState('')
    const chatId = useSelector((state) => state.chats.activeId)
 
    const dispatch = useDispatch()
-
-   // const craeteList = () => {
-   //    const list =
-   //       dispatch(craeteMassageList(list))
-   // }
 
    const addMsg = () => {
       const userMassage = {
@@ -30,14 +24,6 @@ const AddForm = () => {
    }
    return (
       <>
-         {/* <Grid item>
-            <Button
-               variant="contained"
-               color="primary"
-               onClick={craeteList}
-               startIcon={<PlaylistAddCheckIcon />}>
-               Создать список</Button>
-         </Grid> */}
          <Grid item>
             <TextField
                id="outlined-basic"
@@ -68,4 +54,4 @@ const AddForm = () => {
       </>
    )
 }
-export default AddForm
+export default AddMasssageForm

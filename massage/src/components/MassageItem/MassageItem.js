@@ -1,5 +1,4 @@
-import { Grid, Card, CardContent, Typography, CardHeader, IconButton } from '@material-ui/core'
-// import { ContactSupportOutlined } from '@material-ui/icons';
+import { Grid, Card, CardContent, Typography, CardHeader, IconButton, Avatar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { showAutoMSG } from '../../actions/autoMsgActions';
@@ -18,12 +17,16 @@ const MassageItem = ({ massageList }) => {
          {massageList.map((item) => (
             <Grid item key={item.id}>
                <Card>
-                  <CardHeader action={<IconButton color="secondary" onClick={() => deleteItem(item.id, item.author)} >
-                     <CloseIcon />
-                  </IconButton>} />
+                  <CardHeader
+                     avatar={<Avatar></Avatar>}
+                     title={item.author}
+                     action={<IconButton
+                        color="secondary"
+                        onClick={() => deleteItem(item.id, item.author)}>
+                        <CloseIcon />
+                     </IconButton>} />
 
                   <CardContent>
-                     <Typography variant="h5" pd={4}>{item.author}</Typography>
                      <Typography>{item.text}</Typography>
                   </CardContent>
                </Card>
@@ -32,4 +35,5 @@ const MassageItem = ({ massageList }) => {
       </Grid>
    )
 }
+
 export default MassageItem

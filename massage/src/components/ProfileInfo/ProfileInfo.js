@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteProfile } from '../../actions/profileActions';
 import { showAutoMSG } from '../../actions/autoMsgActions';
 
-
 const ProfileInfo = () => {
    const profile = useSelector((state) => state.profile)
 

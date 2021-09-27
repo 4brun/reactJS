@@ -1,25 +1,24 @@
 import { Grid } from "@material-ui/core";
 import MassageItem from "../MassageItem/MassageItem";
 import { useSelector } from "react-redux";
-import AddForm from "../AddForm/AddForm";
+import AddMasssageForm from "../AddMasssageForm/AddMasssageForm";
 import AutoMSG from "../AutoMSG/AutoMSG";
 
 const MassageList = () => {
    const chatId = useSelector((state) => state.chats.activeId)
-   const massageList = useSelector((state) => state.massages[chatId])
-
+   const massageList = useSelector((state) => state.massages[chatId]) // отображаем только активный чат
 
    return (
       <Grid container
          direction="column"
          alignItems="center"
          spacing={6}
-         md={6}
       >
-         <AddForm />
+         <AddMasssageForm />
          <AutoMSG />
          <MassageItem massageList={massageList} />
       </Grid>
    )
 }
+
 export default MassageList

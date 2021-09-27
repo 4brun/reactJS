@@ -6,7 +6,6 @@ import { showAutoMSG } from "../../actions/autoMsgActions";
 import AutoMSG from "../AutoMSG/AutoMSG";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 
-
 const Profile = () => {
    const [name, setName] = useState('')
    const [age, setAge] = useState('')

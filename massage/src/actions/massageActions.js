@@ -1,4 +1,4 @@
-import { ADD_MASSAGE, DELETE_MASSAGE, DELETE_MASSAGELIST } from "../store/types/massageTypes";
+import { ADD_MASSAGE, DELETE_MASSAGE, DELETE_MASSAGELIST, CREATE_MASSAGELIST } from "../store/types/massageTypes";
 
 export const addMassage = (chatId, massage) => ({
    type: ADD_MASSAGE,
@@ -12,5 +12,10 @@ export const deleteMassage = (chatId, id) => ({
 
 export const deleteMassageList = (id) => ({
    type: DELETE_MASSAGELIST,
+   payload: id
+})
+
+export const createMassageList = (id) => ({
+   type: CREATE_MASSAGELIST,
    payload: id
 })

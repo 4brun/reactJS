@@ -1,4 +1,4 @@
-import { ADD_MASSAGE, DELETE_MASSAGE, DELETE_MASSAGELIST } from "./types/massageTypes"
+import { ADD_MASSAGE, CREATE_MASSAGELIST, DELETE_MASSAGE, DELETE_MASSAGELIST, } from "./types/massageTypes"
 
 const initialState = {
    0: [{
@@ -72,23 +72,21 @@ const massages = (state = initialState, { type, payload }) => {
                   }
                ]
          }
-
       case DELETE_MASSAGE:
          return {
             ...state,
             [payload.chatId]: state[payload.chatId].filter((el) => el.id !== payload.id)
          }
-
       case DELETE_MASSAGELIST:
          return {
             ...state,
             [payload]: []
          }
-      // case CREATE_MASSAGELIST:
-      //    return [
-      //       ...state,
-      //       ...payload
-      //    ]
+      case CREATE_MASSAGELIST:
+         return {
+            ...state,
+            [payload]: []
+         }
       default:
          return state;
    }
