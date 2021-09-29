@@ -3,7 +3,7 @@ import { TextField, Button, Grid } from "@material-ui/core";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMassage } from '../../actions/massageActions';
-import { showAutoMSG } from '../../actions/autoMsgActions';
+import { showMSG } from '../../actions/autoMsgActions';
 
 const AddMasssageForm = () => {
    const [userText, setUserText] = useState('')
@@ -14,11 +14,18 @@ const AddMasssageForm = () => {
 
    const addMsg = () => {
       const userMassage = {
-         text: userText || 'Текст',
-         author: userAuthor || 'Автор'
+         text: userText,
+         author: userAuthor || 'Аноним'
       }
-      dispatch(addMassage(chatId, userMassage))
-      dispatch(showAutoMSG(`Вы добавили сообщение ${userText} от автора ${userAuthor}`))
+      if (!userText) {
+         dispatch(showMSG(`Вы не ввели сообщение`))
+      } else if (!userAuthor) {
+         dispatch(showMSG(`Вы добавили сообщение ${userText} без автора`)) // отправляю сообщение в асинхронный setTimeout
+         dispatch(addMassage(chatId, userMassage))
+      } else {
+         dispatch(showMSG(`Вы добавили сообщение ${userText} от автора ${userAuthor}`)) // отправляю сообщение в асинхронный setTimeout
+         dispatch(addMassage(chatId, userMassage))
+      }
       setUserText('')
       setUserAuthor('')
    }

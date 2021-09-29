@@ -9,3 +9,7 @@ export const hideAutoMSG = (hide) => ({
    type: HIDE_AUTO_MSG,
    payload: hide
 })
+
+export const showMSG = (massage) => dispatch => {
+   setTimeout(() => dispatch(showAutoMSG(massage)), 200)
+}
