@@ -15,7 +15,6 @@ const chats = (state = initialState, { type, payload }) => {
          return {
             ...state,
             activeId: payload,
-
          }
       case DELETE_CHAT:
          return {
